@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Prepare Geodata files
-      run: mv ${{ github.workspace }}/geodata/*.l2j ${{ github.workspace }}/ && ls -la && rm -rf geodata/ 
+      run: rm -f geodata/*.txt 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
@@ -18,4 +18,10 @@ jobs:
         ARGS: "-rlgoDzvc -i"
         REMOTE_HOST: ${{ secrets.HOST }}
         REMOTE_USER: ${{ secrets.USER }}
+        SOURCE: "geodata/"
         TARGET: ${{ secrets.TARGET }}
+        SCRIPT_BEFORE: |
+          ls -al
+        SCRIPT_AFTER: |
+          ls -al
+          echo $RSYNC_STDOUT
