@@ -6,9 +6,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
     - uses: actions/checkout@v3
-    - name: Set up
+    - name: Prepare Geodata files
       run: mv ${{ github.workspace }}/geodata/*.l2j ${{ github.workspace }}/ && ls -la && rm -rf geodata/ 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
