@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up
-      run: ls -l && mv ${{ github.workspace }}/geodata/*.l2j ${{ github.workspace }}/ && rm geodata/ 
+      run: mv ${{ github.workspace }}/geodata/*.l2j ${{ github.workspace }}/ && ls -la && rm -rf geodata/ 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
