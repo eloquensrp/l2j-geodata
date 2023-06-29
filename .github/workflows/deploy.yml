@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Set up
       run: mv ./geodata/*.l2j && rm geodata/ 
