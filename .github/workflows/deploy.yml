@@ -1,0 +1,20 @@
+name: Geodata CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: unbuntu-latest
+    steps:
+    - name: Set up
+      run: mv ./geodata/*.l2j && rm geodata/ 
+    - uses: actions/checkout@v3
+    - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USER }}
+          TARGET: ${{ secrets.TARGET }}
