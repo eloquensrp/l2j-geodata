@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set up
-      run: mv ./geodata/*.l2j && rm geodata/ 
+      run: mv ${{ github.workspace }}/geodata/*.l2j ${{ github.workspace }}/ && rm geodata/ 
     - uses: actions/checkout@v3
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
